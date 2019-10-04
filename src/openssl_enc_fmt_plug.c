@@ -319,7 +319,7 @@ static int kpa(unsigned char *key, unsigned char *iv, int inlined)
 			if (memmem(out, cur_salt->datalen, cur_salt->kpt, strlen((char*)cur_salt->kpt)))
 				return 0;
 		} else if (cur_salt->kpa == 2) {
-			int len = check_pkcs_pad(out, cur_salt->datalen, 16);
+			int len = cur_salt->datalen;
 			int nascii = count_ascii(out, len);
 			if ( (nascii * 100) / len >= cur_salt->asciipct )
 				return 0;
